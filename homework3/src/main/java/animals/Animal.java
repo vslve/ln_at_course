@@ -56,7 +56,7 @@ public abstract class Animal {
         this.satiety = satiety;
     }
 
-    protected void eat(Food food) {
+    public void eat(Food food) {
         if (checkFoodAccordance(food)) {
             eatItUp(food);
             System.out.println(getEatingDescription(food));
