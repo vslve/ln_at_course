@@ -21,8 +21,12 @@ public class Aviary <T extends Animal> {
         this.size = size;
     }
 
+    public Map<Integer, T> getAviary() {
+        return aviary;
+    }
+
     public boolean addAnimal(T animal) {
-        if (animal.getAviarySize() == size) {
+        if (animal.getAviarySize().getSize() <= size.getSize()) {
             aviary.put(animal.getId(), animal);
             return true;
         }
