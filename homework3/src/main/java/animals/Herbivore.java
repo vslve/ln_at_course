@@ -1,7 +1,6 @@
 package animals;
 
 import aviary.AviarySize;
-import food.Food;
 import food.Grass;
 
 public abstract class Herbivore extends Animal {
