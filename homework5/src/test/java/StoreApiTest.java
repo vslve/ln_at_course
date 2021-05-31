@@ -36,7 +36,8 @@ public class StoreApiTest {
                 .build();
     }
 
-    private void createOrder() {
+    @Test
+    public void createOrder() {
         Order response = given()
                 .body(ORDER)
                 .when()
@@ -48,7 +49,10 @@ public class StoreApiTest {
         Assertions.assertEquals(response, ORDER);
     }
 
-    private void getOrder() {
+    @Test
+    public void getOrder() {
+        postOrder();
+
         Order response = given()
                 .pathParam("orderId", System.getProperty("orderId"))
                 .when()
@@ -60,7 +64,10 @@ public class StoreApiTest {
         Assertions.assertEquals(response, ORDER);
     }
 
-    private void deleteOrder() {
+    @Test
+    public void deleteOrder() {
+        postOrder();
+
         given()
                 .pathParam("orderId", System.getProperty("orderId"))
                 .when()
@@ -76,7 +83,8 @@ public class StoreApiTest {
                 .statusCode(404);
     }
 
-    private void getInventory() {
+    @Test
+    public void getInventory() {
         Map response =
                 when()
                         .get("/inventory")
@@ -91,15 +99,7 @@ public class StoreApiTest {
         Assertions.assertTrue(response.containsKey("avalible"));
     }
 
-    @Test
-    public void testOrder() {
-        createOrder();
-        getOrder();
-        deleteOrder();
-    }
-
-    @Test
-    public void testInventory() {
-        getInventory();
+    private void postOrder() {
+        given().body(ORDER).post("/order");
     }
 }
